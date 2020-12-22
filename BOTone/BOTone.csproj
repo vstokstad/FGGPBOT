@@ -21,5 +21,9 @@
     <ItemGroup>
       <None Remove="runtimeconfig.template.json" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Dockerfile" />
+      <Content Include="obj\Release\netcoreapp3.1\Dockerfile" />
+    </ItemGroup>
 
 </Project>
