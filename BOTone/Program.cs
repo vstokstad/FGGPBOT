@@ -9,21 +9,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BOTone {
     public class Program {
-        public static void Main(string[] args)
-            => new Program().MainAsync().GetAwaiter().GetResult();
-
-
         private DiscordSocketClient? _client;
 
+        public static void Main(string[] args){
+            new Program().MainAsync().GetAwaiter().GetResult();
+        }
+
         public async Task MainAsync(){
-            using (var services = ConfigureServices()) {
+            using (ServiceProvider? services = ConfigureServices()) {
                 _client = services.GetRequiredService<DiscordSocketClient>();
 
                 _client.Log += Log;
                 services.GetRequiredService<CommandService>().Log += Log;
                 _client.Ready += ClientOnReady;
 
-                await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("token"));
+                await _client.LoginAsync(TokenType.Bot,
+                    Environment.GetEnvironmentVariable("token", EnvironmentVariableTarget.Process));
                 await _client.StartAsync();
 
 

@@ -37,11 +37,11 @@ namespace BOTone {
             if (message.Source != MessageSource.User) return;
 
             // This value holds the offset where the prefix ends
-            var argPos = 0;
+            int argPos = 0;
             // Perform prefix check. You may want to replace this with
             if (!message.HasCharPrefix('!', ref argPos)) return;
 
-            var context = new SocketCommandContext(_discord, message);
+            SocketCommandContext? context = new SocketCommandContext(_discord, message);
             // Perform the execution of the command. In this method,
             // the command service will perform precondition and parsing check
             // then execute the command if one is matched.
