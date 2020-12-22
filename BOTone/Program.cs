@@ -1,49 +1,59 @@
 ﻿using System;
-using System.IO;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
-using Newtonsoft.Json;
+using Discord.WebSocket;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BOTone {
     public class Program {
         public static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
 
-        private EventHandler _handler = (sender, args) => { };
 
-        private DiscordSocketConfig _socketConfig = new DiscordSocketConfig {
-            LogLevel = Discord.LogSeverity.Verbose,
-            MessageCacheSize = 1000,
-        };
-
-
-        public DiscordSocketClient Client { get; private set; }
+        private DiscordSocketClient? _client;
 
         public async Task MainAsync(){
-            string token = Environment.GetEnvironmentVariable("BotToken");
-       
-            Client = new DiscordSocketClient(_socketConfig);
-            Client.Log += Log;
-            await Client.LoginAsync(TokenType.Bot, token);
-            await Client.StartAsync();
-            Client.Ready += ClientOnReady;
+            using (var services = ConfigureServices()) {
+                _client = services.GetRequiredService<DiscordSocketClient>();
+
+                _client.Log += Log;
+                services.GetRequiredService<CommandService>().Log += Log;
+                _client.Ready += ClientOnReady;
+
+                await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("token"));
+                await _client.StartAsync();
 
 
-            await Task.Delay(-1);
+                await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
+
+                await Task.Delay(Timeout.Infinite);
+            }
+        }
+
+        private ServiceProvider ConfigureServices(){
+            return new ServiceCollection()
+                .AddSingleton<DiscordSocketClient>()
+                .AddSingleton<CommandService>()
+                .AddSingleton<CommandHandlingService>()
+                .AddSingleton<HttpClient>()
+                .AddSingleton<PictureService>()
+                .BuildServiceProvider();
         }
 
         private Task ClientOnReady(){
-            Log("clientReay");
-            return null;
+            Log("clientReady Task");
+
+            return Task.CompletedTask;
         }
 
-        private static void Log(string msg){
+        private void Log(string msg){
             Console.WriteLine(msg);
         }
 
-        private static Task Log(LogMessage msg){
+        private Task Log(LogMessage msg){
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
