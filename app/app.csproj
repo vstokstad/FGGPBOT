@@ -25,5 +25,8 @@
       <Content Include="Dockerfile" />
       <Content Include="obj\Release\netcoreapp3.1\Dockerfile" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="obj\Release\netcoreapp3.1" />
+    </ItemGroup>
 
 </Project>
