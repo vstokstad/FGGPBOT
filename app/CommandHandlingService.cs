@@ -8,7 +8,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BOTone {
+namespace fgbot {
     public class CommandHandlingService {
         private readonly CommandService _commands;
         private readonly DiscordSocketClient _discord;

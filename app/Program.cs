@@ -7,7 +7,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BOTone {
+namespace fgbot {
     public class Program {
         private DiscordSocketClient? _client;
 
