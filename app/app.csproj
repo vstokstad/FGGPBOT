@@ -20,6 +20,38 @@
       <PackageReference Include="Discord.Net.WebSocket" Version="2.2.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="bin\Release\netcoreapp3.1\app.deps.json" />
+      <Content Include="bin\Release\netcoreapp3.1\app.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\app.pdb" />
+      <Content Include="bin\Release\netcoreapp3.1\app.runtimeconfig.dev.json" />
+      <Content Include="bin\Release\netcoreapp3.1\app.runtimeconfig.json" />
+      <Content Include="bin\Release\netcoreapp3.1\Discord.Net.Commands.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Discord.Net.Core.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Discord.Net.Rest.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Discord.Net.Webhook.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Discord.Net.WebSocket.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\Newtonsoft.Json.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\app.deps.json" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\app.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\app.pdb" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\app.runtimeconfig.json" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Discord.Net.Commands.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Discord.Net.Core.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Discord.Net.Rest.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Discord.Net.Webhook.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Discord.Net.WebSocket.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\Newtonsoft.Json.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\System.Interactive.Async.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\publish\System.Linq.Async.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\System.Interactive.Async.dll" />
+      <Content Include="bin\Release\netcoreapp3.1\System.Linq.Async.dll" />
+    </ItemGroup>
    
 
 </Project>
