@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 
-namespace fgbot {
+namespace fggpbot {
     public class PublicModule : ModuleBase<SocketCommandContext> {
         // Dependency Injection will fill this value in for us
         private PictureService PictureService { get; set; }
