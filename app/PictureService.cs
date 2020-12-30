@@ -1,5 +1,6 @@
 // FGGPBOTPictureService.cs2020Vilhelm Stokstad
 
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,8 +14,13 @@ namespace fggpbot {
         }
 
         public async Task<Stream> GetCatPictureAsync(){
-            HttpResponseMessage? resp = await _http.GetAsync("https://cataas.com/cat");
-            return await resp.Content.ReadAsStreamAsync();
+            try {
+                HttpResponseMessage? resp = await _http.GetAsync("https://cataas.com/cat");
+                return await resp.Content.ReadAsStreamAsync();
+            }
+            catch {
+                throw new HttpRequestException();
+            }
         }
     }
 }
