@@ -1,17 +1,17 @@
 // FGGPBOTPublicModule.cs2020Vilhelm Stokstad
 
+using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
+using static System.Diagnostics.Debug;
 
-namespace fggpbot {
+namespace app {
     public class PublicModule : ModuleBase<SocketCommandContext> {
         // Dependency Injection will fill this value in for us
-        public PictureService? PictureService { get; set; }
-        public Emote thorEmote = Emote.Parse(":Thor:");
-        
+
+
         [Command("commands")]
         public async Task CommandsAsync(){
             await ReplyAsync(
@@ -32,24 +32,27 @@ namespace fggpbot {
             return ReplyAsync("pong!");
         }
 
-        [Command(text: "cat")]
+        [Command("cat")]
         public async Task CatAsync(){
-            // Get a stream containing an image of a cat
             try {
-                Stream stream = await PictureService!.GetCatPictureAsync();
-
-
+                // Get a stream containing an image of a cat
+                Stream stream = await PictureService.GetCatPictureAsync();
                 // Streams must be seeked to their beginning before being uploaded!
-                stream.Seek(offset: 0, origin: SeekOrigin.Begin);
 
-                await Context.Channel.SendFileAsync(stream: stream, filename: "cat.png");
+                stream.Seek(0, SeekOrigin.Begin);
+
+                await Context.Channel.SendFileAsync(stream, "cat.png");
             }
             catch {
-                await ReplyAsync(message: "mjau" + thorEmote, isTTS: true);
-               
-                
-
+                Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
+                await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
             }
+        }
+
+        [Command("thor")]
+        public async Task ThorAsync(){
+            Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
+            await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
         }
 
         [Command("friday")]
