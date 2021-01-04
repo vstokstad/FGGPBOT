@@ -1,14 +1,16 @@
 // FGGPBOTPublicModule.cs2020Vilhelm Stokstad
 
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
+using static System.Diagnostics.Debug;
 
-namespace fggpbot {
+namespace app {
     public class PublicModule : ModuleBase<SocketCommandContext> {
         // Dependency Injection will fill this value in for us
-        private PictureService PictureService { get; set; }
+
 
         [Command("commands")]
         public async Task CommandsAsync(){
@@ -32,11 +34,25 @@ namespace fggpbot {
 
         [Command("cat")]
         public async Task CatAsync(){
-            // Get a stream containing an image of a cat
-            Stream stream = await PictureService!.GetCatPictureAsync();
-            // Streams must be seeked to their beginning before being uploaded!
-            stream.Seek(0, SeekOrigin.Begin);
-            await Context.Channel.SendFileAsync(stream, "cat.png");
+            try {
+                // Get a stream containing an image of a cat
+                Stream stream = await PictureService.GetCatPictureAsync();
+                // Streams must be seeked to their beginning before being uploaded!
+
+                stream.Seek(0, SeekOrigin.Begin);
+
+                await Context.Channel.SendFileAsync(stream, "cat.png");
+            }
+            catch {
+                Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
+                await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
+            }
+        }
+
+        [Command("thor")]
+        public async Task ThorAsync(){
+            Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
+            await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
         }
 
         [Command("friday")]
