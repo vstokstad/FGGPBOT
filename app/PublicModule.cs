@@ -5,12 +5,13 @@ using System.IO;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
-using static System.Diagnostics.Debug;
 
 namespace app {
     public class PublicModule : ModuleBase<SocketCommandContext> {
         // Dependency Injection will fill this value in for us
-
+        public PictureService? PictureService { get; }
+    
+       
 
         [Command("commands")]
         public async Task CommandsAsync(){
@@ -34,25 +35,23 @@ namespace app {
 
         [Command("cat")]
         public async Task CatAsync(){
-            try {
+         
                 // Get a stream containing an image of a cat
-                Stream stream = await PictureService.GetCatPictureAsync();
+                Stream stream = await (PictureService != null ? PictureService.GetCatPictureAsync() : null);
                 // Streams must be seeked to their beginning before being uploaded!
-
+                if (stream != null) {
                 stream.Seek(0, SeekOrigin.Begin);
-
                 await Context.Channel.SendFileAsync(stream, "cat.png");
-            }
-            catch {
-                Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
-                await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
-            }
-        }
-
-        [Command("thor")]
-        public async Task ThorAsync(){
-            Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
-            await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
+                }
+                else {
+                    Emote.TryParse(":Thor:795573677189365790",out Emote thorEmote);
+                await ReplyAsync(message: "mjau" + thorEmote, isTTS: true);
+                }
+          
+              
+            
+       
+            
         }
 
         [Command("friday")]
