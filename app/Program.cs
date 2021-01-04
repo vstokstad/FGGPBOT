@@ -7,7 +7,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace fggpbot {
+namespace app {
     public class Program {
         private DiscordSocketClient? _client;
 
@@ -33,16 +33,17 @@ namespace fggpbot {
                 await Task.Delay(Timeout.Infinite);
             }
         }
-
+   
         private ServiceProvider ConfigureServices(){
             return new ServiceCollection()
                 .AddSingleton<DiscordSocketClient>()
                 .AddSingleton<CommandService>()
                 .AddSingleton<CommandHandlingService>()
                 .AddSingleton<HttpClient>()
-                .AddSingleton<PictureService>()
                 .BuildServiceProvider();
         }
+
+   
 
         private Task ClientOnReady(){
             Log("clientReady Task");
