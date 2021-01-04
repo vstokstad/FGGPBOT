@@ -1,11 +1,9 @@
 // FGGPBOTPublicModule.cs2020Vilhelm Stokstad
 
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
-using static System.Diagnostics.Debug;
 
 namespace app {
     public class PublicModule : ModuleBase<SocketCommandContext> {
@@ -44,8 +42,7 @@ namespace app {
                 await Context.Channel.SendFileAsync(stream, "cat.png");
             }
             catch {
-                Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
-                await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
+                await ThorAsync();
             }
         }
 
