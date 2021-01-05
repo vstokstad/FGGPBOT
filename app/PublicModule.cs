@@ -48,8 +48,8 @@ namespace app {
 
         [Command("thor")]
         public async Task ThorAsync(){
-            Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote);
-            await ReplyAsync(message: "mjau" + thorEmote, isTTS: false);
+           string message = Emote.TryParse(":Thor:795573677189365790", out Emote thorEmote)? thorEmote.Name : ":thor:";
+            await ReplyAsync(message: "mjau" + message, isTTS: false);
         }
 
         [Command("friday")]

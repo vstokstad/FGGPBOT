@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="fggpbot.azurecr.io" id="01f2faec-b16a-4b41-89e1-db5f21aecb96" port="22" nameFormat="DESCRIPTIVE" username="FGGPBOT" />
+    </configs>
+  </component>
+</project>
