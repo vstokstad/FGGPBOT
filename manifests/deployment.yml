@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: fggpbot 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fggpbot
+  template:
+    metadata:
+      labels:
+        app: fggpbot 
+    spec:
+      containers:
+        - name: fggpbot 
+          image: fggpbot.azurecr.io/fggpbot
+          ports:
+          - containerPort: 80
