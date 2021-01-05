@@ -38,6 +38,18 @@ jobs:
         container-registry-password: ${{ secrets.acr_fggpbot_password }}
         secret-name: fggpclusterdockerauth
        
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: default
+        container-registry-url: fggpbot.azurecr.io
+        container-registry-username: ${{ secrets.acr_fggpbot_username }}
+        container-registry-password: ${{ secrets.acr_fggpbot_password }}
+        secret-type: docker-registry 
+        secret-name: token
+        key: token 
+        arguments: --from-literal=token=value
+        
+       
     - uses: azure/k8s-deploy@v1.2
       with:
         namespace: default
