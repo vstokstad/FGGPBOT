@@ -5,9 +5,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace app {
-    public static class PictureService {
-        private static readonly HttpClient _http;
-
+    public static class  PictureService {
+        private static readonly HttpClient _http = new HttpClient();
         
 
         public static async Task<Stream> GetCatPictureAsync(){
