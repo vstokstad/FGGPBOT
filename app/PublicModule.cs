@@ -53,7 +53,8 @@ namespace app {
             if( Emote.TryParse( "<:Thor:795573677189365790>", out Emote thorEmote ) ) emote = thorEmote;
             else if( GuildEmote.TryParse( "<:Thor:795573677189365790>", out Emote thorEmote2 ) ) emote = thorEmote2;
             
-            if( emote != null ) { await ReplyAsync( "MEEEEEOOOOOWW! "  + emote, isTTS: true );
+            if( emote != null ) {
+                await ReplyAsync( "MEEEEEOOOOOWW! "  + emote, isTTS: true );
             }
             else await ReplyAsync( "MEEEEEOOOOOWW! ", isTTS: true );
         }
